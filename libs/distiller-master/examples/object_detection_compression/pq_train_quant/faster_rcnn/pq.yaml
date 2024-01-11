@@ -1,0 +1,16 @@
+quantizers:
+  post_train_quantizer:
+    class: PostTrainLinearQuantizer
+    bits_activations: 6
+    bits_parameters: 6
+    bits_accum: 32
+    mode: ASYMMETRIC_UNSIGNED
+    per_channel_wts: True
+    clip_acts: AVG
+
+policies:
+    - quantizer:
+        instance_name: post_train_quantizer
+        starting_epoch: 0
+        ending_epoch: 1
+        frequency: 1

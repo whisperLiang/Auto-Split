@@ -1,0 +1,21 @@
+HWConfig:
+
+    # for depthwise
+    hx: 7 # has to be atleast Kx, Kx+Sx, and so on ..
+    wx: 4 # has to be atleast Ky, Ky + Sy and so on ..
+    cx: 12
+
+    # for pointwise
+    fx: 7
+    hxx: 7
+    wxx: 4
+    cxx: 12
+    padd_unit: 4
+
+    dma_cycles: 0.202381
+    mac_cycles: 1
+    padd_cycles: 1
+
+
+
+

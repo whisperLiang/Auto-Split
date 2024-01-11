@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteMappingsManager">
+    <list>
+      <list>
+        <remote-mappings server-id="python@sftp://naveen@10.209.201.31:22/home/naveen/anaconda3/envs/pyt_13/bin/python">
+          <settings>
+            <list>
+              <mapping local-root="$PROJECT_DIR$/.." remote-root="/home/naveen/edge-cloud-collaboration" />
+            </list>
+          </settings>
+        </remote-mappings>
+        <remote-mappings server-id="python@sftp://naveen@10.213.96.117:22/home/naveen/anaconda3/envs/env1/bin/python" />
+      </list>
+    </list>
+  </component>
+</project>

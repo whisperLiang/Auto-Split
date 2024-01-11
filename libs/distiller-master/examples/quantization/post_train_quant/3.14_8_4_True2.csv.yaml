@@ -1,0 +1,319 @@
+
+quantizers:
+  post_train_quantizer:
+    class: PostTrainLinearQuantizer
+    # Don't quantize anything by default, override below for should be quantized
+    bits_activations: null
+    bits_parameters: null
+    bits_accum: 32
+    mode:
+      activations: ASYMMETRIC_UNSIGNED
+      weights: SYMMETRIC
+    model_activation_stats: examples/quantization/post_train_quant/stats/resnet50_quant_stats.yaml
+    per_channel_wts: False
+    inputs_quant_auto_fallback: True
+
+    overrides:
+      # Conv layers inside the ResNet BasicBlock are quantized (except last one, see below)
+      conv1:
+        bits_activations: 4
+        bits_weights: 6
+      # ReLU layers inside the ResNet BasicBlock are quantized (except last one, see below)
+      layer1.1*conv1.*:
+        bits_activations: 4
+        bits_weights: 6
+
+
+
+#- - - quantizers
+#      - - - post_train_quantizer
+#            - - - class
+#                - PostTrainLinearQuantizer
+#              - - bits_activations
+#                - null
+#              - - bits_parameters
+#                - null
+#              - - bits_accum
+#                - 32
+#              - - - mode
+#                - - activations
+#                  - ASYMMETRIC_UNSIGNED
+#                - - weights
+#                  - SYMMETRIC
+#              - - model_activation_stats
+#                - ~/edge-cloud-collaboration//tools/run_quantization/sample_yaml/resnet50_quant_stats.yaml
+#              - - per_channel_wts
+#                - False
+#              - - inputs_quant_auto_fallback
+#                - True
+#              - - overrides
+#                  - - - conv1
+#                        - - - bits_weights
+#                            - 6
+#                          - - bits_activations
+#                            - 4
+#                    - - layer1.0.conv1
+#                        - - - bits_weights
+#                            - 6
+#                          - - bits_activations
+#                            - 8
+#                    - - layer1.0.conv2
+#                        - - - bits_weights
+#                            - 6
+#                          - - bits_activations
+#                            - 8
+#                    - - layer1.0.conv3
+#                        - - - bits_weights
+#                            - 6
+#                          - - bits_activations
+#                            - 4
+#                    - - layer1.0.downsample.0
+#                        - - - bits_weights
+#                            - 6
+#                          - - bits_activations
+#                            - 4
+#                    - - layer1.1.conv1
+#                        - - - bits_weights
+#                            - 6
+#                          - - bits_activations
+#                            - 8
+#                    - - layer1.1.conv2
+#                        - - - bits_weights
+#                            - 6
+#                          - - bits_activations
+#                            - 8
+#                    - - layer1.1.conv3
+#                        - - - bits_weights
+#                            - 6
+#                          - - bits_activations
+#                            - 4
+#                    - - layer1.2.conv1
+#                        - - - bits_weights
+#                            - 6
+#                          - - bits_activations
+#                            - 4
+#                    - - layer1.2.conv2
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer1.2.conv3
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer2.0.conv1
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer2.0.conv2
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer2.0.conv3
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer2.0.downsample.0
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer2.1.conv1
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer2.1.conv2
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer2.1.conv3
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer2.2.conv1
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer2.2.conv2
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer2.2.conv3
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer2.3.conv1
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer2.3.conv2
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer2.3.conv3
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer3.0.conv1
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer3.0.conv2
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer3.0.conv3
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer3.0.downsample.0
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer3.1.conv1
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer3.1.conv2
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer3.1.conv3
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer3.2.conv1
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer3.2.conv2
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer3.2.conv3
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer3.3.conv1
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer3.3.conv2
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer3.3.conv3
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer3.4.conv1
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer3.4.conv2
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer3.4.conv3
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer3.5.conv1
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer3.5.conv2
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer3.5.conv3
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer4.0.conv1
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer4.0.conv2
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer4.0.conv3
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer4.0.downsample.0
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer4.1.conv1
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer4.1.conv2
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer4.1.conv3
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer4.2.conv1
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer4.2.conv2
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - layer4.2.conv3
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null
+#                    - - fc
+#                        - - - bits_weights
+#                            - null
+#                          - - bits_activations
+#                            - null

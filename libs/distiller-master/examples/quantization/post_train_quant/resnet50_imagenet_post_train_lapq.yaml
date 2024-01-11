@@ -1,0 +1,36 @@
+quantizers:
+  post_train_quantizer:
+    class: PostTrainLinearQuantizer
+    # Don't quantize anything by default, override below for should be quantized
+    bits_activations: null
+    bits_parameters: null
+    bits_accum: 32
+    mode:
+      activations: ASYMMETRIC_UNSIGNED
+      weights: SYMMETRIC
+#    model_activation_stats: ../libs/distiller-master/examples/quantization/post_train_quant/stats/resnet50_quant_stats.yaml
+#    model_activation_stats: data/resnet50/quant_stats_after_prepare_model.yaml
+    per_channel_wts: False
+    inputs_quant_auto_fallback: True
+
+    overrides:
+      # Conv layers inside the ResNet BasicBlock are quantized (except last one, see below)
+      layer.*conv.*:
+        bits_activations: 4
+        bits_weights: 4
+      # ReLU layers inside the ResNet BasicBlock are quantized (except last one, see below)
+      layer.*relu.*:
+        bits_activations: 4
+        quantize_inputs: False
+      # Conv layers in downsampling residual connections are quantized
+      .*downsample\.0.*:
+        bits_activations: null
+        bits_weights: 4
+      # The last conv+relu layers are NOT quantized, we specify them directly
+      layer4.1.conv2:
+        bits_activations: null
+        bits_weights: null
+      layer4.1.relu2:
+        bits_activations: null
+
+

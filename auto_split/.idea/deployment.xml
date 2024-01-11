@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="Always" serverName="naveen@10.213.96.117:22 password" autoUploadExternalChanges="true">
+    <serverData>
+      <paths name="naveen@10.209.201.31:22 password">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/naveen/edge-cloud-collaboration" local="$PROJECT_DIR$/.." web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="naveen@10.213.96.117:22">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/naveen/edge-cloud-collaboration" local="$PROJECT_DIR$/.." />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="naveen@10.213.96.117:22 password">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/naveen/edge-cloud-collaboration" local="$PROJECT_DIR$/.." />
+          </mappings>
+          <excludedPaths>
+            <excludedPath path="/home/naveen/edge-cloud-collaboration/detection_models/yolo3_darknet53/data" />
+            <excludedPath path="/home/naveen/edge-cloud-collaboration/detection_models/yolo3_darknet53/models" />
+            <excludedPath path="/home/naveen/edge-cloud-collaboration/detection_models/yolo3_darknet53/result" />
+            <excludedPath path="/home/naveen/edge-cloud-collaboration/detection_models/yolo3_darknet53/test_images" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+      <paths name="sftp-10.209.201.31">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
+  </component>
+</project>

@@ -1,0 +1,60 @@
+
+
+quantizers:
+  post_train_quantizer:
+    class: PostTrainLinearQuantizer
+    bits_activations: 6
+    bits_parameters: 6
+    bits_accum: 32
+
+    # Quantization mode can be defined either with a single value for both weights and activations, or with
+    # a nested dictionary specifying weights and activations separately.
+    # All the results in the table above are using ASYMMETRIC for both weights and activations.
+    mode: ASYMMETRIC_UNSIGNED
+    # Example of mixed definition:
+    # mode:
+    #   activations: ASYMMETRIC_UNSIGNED
+    #   weights: SYMMETRIC
+
+    # Path to stats file assuming this is being invoked from the 'classifier_compression' example directory
+#    model_activation_stats: ../quantization/post_train_quant/stats/resnet18_quant_stats.yaml
+    per_channel_wts: True
+    clip_acts: AVG
+
+    # Overrides section for run 3
+#    overrides:
+#      fc:
+#        clip_acts: NONE  # Don't clip activations in last layer before softmax
+
+    # Overrides section for run 4
+#    overrides:
+#      .*add:
+#        bits_weights: 8
+#        bits_activations: 8
+#      fc:
+#        clip_acts: NONE  # Don't clip activations in last layer before softmax
+
+    # Overrides section for run 5
+#    overrides:
+#    # First and last layers in 8-bits
+#      conv1:
+#        bits_weights: 8
+#        bits_activations: 8
+#      fc:
+#        bits_weights: 8
+#        bits_activations: 8
+#        clip_acts: NONE  # Don't clip activations in last layer before softmax
+
+    # Overrides section for run 6
+#    overrides:
+#    # First and last layers + element-wise add layers in 8-bits
+#      conv1:
+#        bits_weights: 8
+#        bits_activations: 8
+#      .*add:
+#        bits_weights: 8
+#        bits_activations: 8
+#      fc:
+#        bits_weights: 8
+#        bits_activations: 8
+#        clip_acts: NONE
